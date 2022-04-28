@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "628962811699",
+    "project_id": "firstfirebaseproject-a935a",
+    "storage_bucket": "firstfirebaseproject-a935a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628962811699:android:761ed98ca3aff817672846",
+        "android_client_info": {
+          "package_name": "com.sky.firebaseproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628962811699-oo57pfkq8bckojep1tsvsa4vqjqabmub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4cSLH4Fu9Wd0-y-P9bxXL0zkidr9ZMp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628962811699-oo57pfkq8bckojep1tsvsa4vqjqabmub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628962811699:android:60836ccd0abd9363672846",
+        "android_client_info": {
+          "package_name": "com.sky.socialmedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628962811699-oo57pfkq8bckojep1tsvsa4vqjqabmub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4cSLH4Fu9Wd0-y-P9bxXL0zkidr9ZMp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628962811699-oo57pfkq8bckojep1tsvsa4vqjqabmub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
