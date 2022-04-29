@@ -4,6 +4,8 @@ import android.icu.util.Freezable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -12,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 import com.sky.socialmedia.R
 import com.sky.socialmedia.adapter.ProfileRecyclerAdapter
 import com.sky.socialmedia.model.Post
+import com.sky.socialmedia.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
@@ -19,7 +22,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database : FirebaseFirestore
     private lateinit var recyclerViewAdapter: ProfileRecyclerAdapter
-
+    private lateinit var profileViewModel : ProfileViewModel
 
     var listPost = ArrayList<Post>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +39,10 @@ class ProfileActivity : AppCompatActivity() {
         val currentUser = auth.currentUser!!.email.toString()
         profile_acitivity_user_email.text = "${currentUser}"
 
-        GetData()
+        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        profileViewModel.GetData(currentUser,database)
+        ObserveLiveData()
+
         for (post in listPost){
             println(post.userComment)
         }
@@ -46,7 +52,14 @@ class ProfileActivity : AppCompatActivity() {
         recyclerView2.adapter = recyclerViewAdapter
 
     }
+    fun ObserveLiveData(){
+        profileViewModel.posts.observe(this, Observer{ posts->
+            posts?.let {
+                recyclerViewAdapter.UpdateListPost(it)
+            }
 
+        })
+    }
     fun GetData() {
         val currentUserEmail = auth.currentUser!!.email.toString()
 

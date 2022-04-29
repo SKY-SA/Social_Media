@@ -30,4 +30,10 @@ class FeedRecyclerAdapter(val listPost:ArrayList<Post>) : RecyclerView.Adapter<F
     override fun getItemCount(): Int {
       return listPost.size
     }
+
+    fun UpdateListPost(newListPost : ArrayList<Post>){
+        listPost.clear()
+        listPost.addAll(newListPost)
+        notifyDataSetChanged()
+    }
 }

@@ -1,14 +1,14 @@
 package com.sky.socialmedia.view
 
 import android.content.Intent
-import android.icu.util.Freezable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -16,13 +16,15 @@ import com.google.firebase.storage.FirebaseStorage
 import com.sky.socialmedia.R
 import com.sky.socialmedia.adapter.FeedRecyclerAdapter
 import com.sky.socialmedia.model.Post
+import com.sky.socialmedia.viewmodel.FeedViewModel
 import kotlinx.android.synthetic.main.activity_feed.*
-import java.lang.Exception
 
 class FeedActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var storage :FirebaseStorage
     private lateinit var database :FirebaseFirestore
+
+    private lateinit var feedViewModel:FeedViewModel
     private lateinit var recyclerViewAdapter : FeedRecyclerAdapter
     var listPost = ArrayList<Post>()
 
@@ -30,18 +32,31 @@ class FeedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
 
+
         auth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
 
-        GetData()
+        feedViewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
+        feedViewModel.GetDataDatabase(database)
+        ObserveLiveData()
 
+
+        //recyclerViewAdapter.notifyDataSetChanged()
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerViewAdapter = FeedRecyclerAdapter(listPost)
         recyclerView.adapter = recyclerViewAdapter
-    }
 
+    }
+    fun ObserveLiveData(){
+        feedViewModel.posts.observe(this,Observer{ posts->
+            posts?.let {
+                recyclerViewAdapter.UpdateListPost(posts)
+            }
+
+        })
+    }
     fun GetData(){
 
         database.collection("Post")

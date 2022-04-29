@@ -28,4 +28,9 @@ class ProfileRecyclerAdapter(val listPost: ArrayList<Post>) : RecyclerView.Adapt
     override fun getItemCount(): Int {
        return listPost.size
     }
+    fun UpdateListPost(newListPost : ArrayList<Post>){
+        listPost.clear()
+        listPost.addAll(newListPost)
+        notifyDataSetChanged()
+    }
 }
