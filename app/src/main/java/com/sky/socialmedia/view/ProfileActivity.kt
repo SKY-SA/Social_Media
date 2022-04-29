@@ -60,7 +60,7 @@ class ProfileActivity : AppCompatActivity() {
 
         })
     }
-    fun GetData() {
+   /* fun GetData() {
         val currentUserEmail = auth.currentUser!!.email.toString()
 
         if(currentUserEmail != null){
@@ -81,5 +81,5 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
         }
-    }
+    }*/
 }

@@ -15,11 +15,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.sky.socialmedia.R
+import com.sky.socialmedia.viewmodel.SharePhotoViewModel
 import kotlinx.android.synthetic.main.activity_share_photo.*
 import java.util.*
 
@@ -29,7 +31,7 @@ class SharePhotoActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var database : FirebaseFirestore
     private lateinit var storage : FirebaseStorage
-
+    private lateinit var sharePhotoViewModel: SharePhotoViewModel
     var chosenImageUri: Uri? = null
     var chosenImageBitmap: Bitmap? = null
 
@@ -37,6 +39,7 @@ class SharePhotoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share_photo)
 
+        sharePhotoViewModel = ViewModelProvider(this).get(SharePhotoViewModel::class.java)
         auth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
@@ -86,7 +89,9 @@ class SharePhotoActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
     fun SharePhoto(view:View){
-        val uuid = UUID.randomUUID()
+        sharePhotoViewModel.Share(this,database,auth,storage,chosenImageUri,txtComment)
+        finish()
+       /* val uuid = UUID.randomUUID()
         val nameImage = "${uuid}.jpg"
 
         val reference = storage.reference
@@ -121,6 +126,8 @@ class SharePhotoActivity : AppCompatActivity() {
                     Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }*/
     }
+
+
 }

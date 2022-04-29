@@ -32,7 +32,7 @@ class FeedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
 
-
+        listPost.clear()
         auth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
@@ -42,7 +42,7 @@ class FeedActivity : AppCompatActivity() {
         ObserveLiveData()
 
 
-        //recyclerViewAdapter.notifyDataSetChanged()
+        //GetData()
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerViewAdapter = FeedRecyclerAdapter(listPost)

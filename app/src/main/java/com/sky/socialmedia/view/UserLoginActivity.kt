@@ -10,10 +10,12 @@ import com.sky.socialmedia.R
 import kotlinx.android.synthetic.main.activity_userlogin.*
 
 class UserLoginActivity : AppCompatActivity() {
-    private lateinit var auth:FirebaseAuth
 
+    private lateinit var auth:FirebaseAuth
     var userEmail :String? =null
     var userPassword :String? =null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_userlogin)
@@ -27,8 +29,6 @@ class UserLoginActivity : AppCompatActivity() {
         }
 
     }
-
-
     fun SignIn(view: View){
         userEmail = txtEmail.text.toString()
         userPassword = txtPassword.text.toString()
