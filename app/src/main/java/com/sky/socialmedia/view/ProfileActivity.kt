@@ -38,9 +38,9 @@ class ProfileActivity : AppCompatActivity() {
         println("Gelen email ${userEmailFromActivity}")
         var date: String? = ""
         sharedPreferences = getSharedPreferences("com.sky.socialmedia.view", Context.MODE_PRIVATE)
-        sharedPreferences?.let {
+        sharedPreferences.let {
             date = it.getString("loginedLastDate","")
-            println("Profil içerisinde date = ${date}")
+
         }
         if(date != null && !date.isNullOrEmpty()){
             profile_dateTextView.text = date
