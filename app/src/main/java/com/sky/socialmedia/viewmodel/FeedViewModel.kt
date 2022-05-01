@@ -13,7 +13,7 @@ class FeedViewModel : ViewModel() {
     val posts = MutableLiveData<ArrayList<Post>>()
     private var listPost = arrayListOf<Post>()
 
-    fun GetDataDatabase(database :FirebaseFirestore){
+    fun getDataDatabase(database :FirebaseFirestore){
         database.collection("Post")
             .orderBy("date", Query.Direction.DESCENDING)
             .addSnapshotListener { value, error ->

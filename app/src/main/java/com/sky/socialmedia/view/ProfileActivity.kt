@@ -1,8 +1,11 @@
 package com.sky.socialmedia.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.icu.util.Freezable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SharedMemory
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,7 +26,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var database : FirebaseFirestore
     private lateinit var recyclerViewAdapter: ProfileRecyclerAdapter
     private lateinit var profileViewModel : ProfileViewModel
-
+    private lateinit var sharedPreferences: SharedPreferences
     var listPost = ArrayList<Post>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,26 +36,32 @@ class ProfileActivity : AppCompatActivity() {
         val intent = intent
         val userEmailFromActivity = intent.getStringExtra("userEmail")
         println("Gelen email ${userEmailFromActivity}")
-
+        var date: String? = ""
+        sharedPreferences = getSharedPreferences("com.sky.socialmedia.view", Context.MODE_PRIVATE)
+        sharedPreferences?.let {
+            date = it.getString("loginedLastDate","")
+            println("Profil içerisinde date = ${date}")
+        }
+        if(date != null && !date.isNullOrEmpty()){
+            profile_dateTextView.text = date
+        }
         auth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()
         val currentUser = auth.currentUser!!.email.toString()
         profile_acitivity_user_email.text = "${currentUser}"
 
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        profileViewModel.GetData(currentUser,database)
-        ObserveLiveData()
+        profileViewModel.getData(currentUser,database)
+        observeLiveData()
 
-        for (post in listPost){
-            println(post.userComment)
-        }
+
         val layoutManager = LinearLayoutManager(this)
         recyclerView2.layoutManager = layoutManager
         recyclerViewAdapter = ProfileRecyclerAdapter(listPost)
         recyclerView2.adapter = recyclerViewAdapter
 
     }
-    fun ObserveLiveData(){
+    fun observeLiveData(){
         profileViewModel.posts.observe(this, Observer{ posts->
             posts?.let {
                 recyclerViewAdapter.UpdateListPost(it)
@@ -60,26 +69,5 @@ class ProfileActivity : AppCompatActivity() {
 
         })
     }
-   /* fun GetData() {
-        val currentUserEmail = auth.currentUser!!.email.toString()
 
-        if(currentUserEmail != null){
-            database.collection("Post").get().addOnSuccessListener { documents->
-                for(doc in documents){
-                    val downloadUserEmail = doc.get("userEmail") as String
-                    if(downloadUserEmail == currentUserEmail ) {
-                        val urlImage = doc.get("urlImage") as String
-                        val userComment = doc.get("userComment") as String
-                        val downloadPost = Post(currentUserEmail, userComment, urlImage)
-
-                        listPost.add(downloadPost)
-                    }
-                    recyclerViewAdapter.notifyDataSetChanged()
-                }
-
-            }.addOnFailureListener{
-                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
 }

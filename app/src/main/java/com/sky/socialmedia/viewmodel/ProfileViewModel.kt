@@ -12,7 +12,7 @@ class ProfileViewModel : ViewModel() {
     private  var listPost = arrayListOf<Post>()
 
 
-    fun GetData(currentUserEmail:String?, database: FirebaseFirestore){
+    fun getData(currentUserEmail:String?, database: FirebaseFirestore){
         if(currentUserEmail != null){
             database.collection("Post").get().addOnSuccessListener { documents->
                 for(doc in documents){
@@ -31,4 +31,5 @@ class ProfileViewModel : ViewModel() {
             }
         }
     }
+
 }
