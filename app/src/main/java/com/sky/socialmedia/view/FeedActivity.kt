@@ -80,7 +80,7 @@ class FeedActivity : AppCompatActivity() {
         if(item.itemId == R.id.profile){
             val currentUserEmail = auth.currentUser!!.email.toString()
             val intentToProfile = Intent(this, ProfileActivity::class.java)
-            println("profile gidiliyor ${currentUserEmail}")
+            //println("profile gidiliyor ${currentUserEmail}")
             intentToProfile.putExtra("userEmail",currentUserEmail)
             startActivity(intentToProfile)
         }
