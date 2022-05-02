@@ -35,7 +35,7 @@ class ProfileActivity : AppCompatActivity() {
         // Sending data from Activities
         val intent = intent
         val userEmailFromActivity = intent.getStringExtra("userEmail")
-        //println("Gelen email ${userEmailFromActivity}")
+
         var date: String? = ""
         sharedPreferences = getSharedPreferences("com.sky.socialmedia.view", Context.MODE_PRIVATE)
         sharedPreferences.let {

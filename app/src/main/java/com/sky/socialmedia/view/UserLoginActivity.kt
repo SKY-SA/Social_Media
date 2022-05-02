@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +29,7 @@ class UserLoginActivity : AppCompatActivity() {
             auth = FirebaseAuth.getInstance()
             val currentUser = auth.currentUser
             if(currentUser!=null){
-                val intent = Intent(this,FeedActivity::class.java)
+                val intent = Intent(this,PostsActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -87,7 +86,7 @@ class UserLoginActivity : AppCompatActivity() {
     }
 
     private fun startFeedActivity() {
-        val intent = Intent(this, FeedActivity::class.java)
+        val intent = Intent(this, PostsActivity::class.java)
         startActivity(intent)
         finish()
     }

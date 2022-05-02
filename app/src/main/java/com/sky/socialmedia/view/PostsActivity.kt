@@ -10,14 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.sky.socialmedia.R
 import com.sky.socialmedia.adapter.FeedRecyclerAdapter
-import com.sky.socialmedia.utility.determineUserName
 import com.sky.socialmedia.viewmodel.FeedViewModel
-import kotlinx.android.synthetic.main.activity_feed.*
+import kotlinx.android.synthetic.main.activity_posts.*
 
-class FeedActivity : AppCompatActivity() {
+class PostsActivity : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
     private lateinit var database :FirebaseFirestore
@@ -32,7 +30,7 @@ class FeedActivity : AppCompatActivity() {
 
 
 
-        setContentView(R.layout.activity_feed)
+        setContentView(R.layout.activity_posts)
 
         // initializing the firebase variables
         auth = FirebaseAuth.getInstance()
@@ -46,8 +44,8 @@ class FeedActivity : AppCompatActivity() {
         observeLiveData()
 
         val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = recyclerViewAdapter
+        postsActivity_recyclerView.layoutManager = layoutManager
+        postsActivity_recyclerView.adapter = recyclerViewAdapter
 
     }
     private fun observeLiveData(){

@@ -6,11 +6,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ProfileActivity">
+    tools:context=".view.ProfileActivity"
+    android:background="#D53C3B3B">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    >
     <TextView
         android:layout_weight="1"
         android:id="@+id/profile_dateTextView"
@@ -21,6 +23,7 @@
         android:gravity="left"
         android:layout_margin="6dp"
         android:padding="5dp"
+        android:textColor="#D0FFFFFF"
         ></TextView>
     <TextView
         android:layout_weight="2"
@@ -30,10 +33,11 @@
         android:text="User Email"
         android:textSize="20sp"
         android:gravity="right"
-        android:textColor="#A66A0505"
+        android:textColor="#E6781B1B"
         android:layout_margin="6dp"
-        android:background="#2F535B75"
+        android:background="#A9F4F2F2"
         android:padding="5dp"
+
         ></TextView>
 </LinearLayout>
 

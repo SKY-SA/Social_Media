@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#D53C3B3B">
 
     <ImageView
         android:id="@+id/profile_recycler_row_image"
@@ -13,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:layout_margin="4dp"
-        android:background="#48D3CBCB"
+        android:background="#11D3CBCB"
         app:srcCompat="@drawable/ic_launcher_background"
         ></ImageView>
     <TextView
@@ -22,10 +23,10 @@
         android:id="@+id/profile_recycler_row_user_comment"
         android:text="User Comment"
         android:textSize="18sp"
-        android:textColor="#D218378E"
+        android:textColor="#DC090909"
         android:layout_margin="4dp"
         android:padding="9dp"
         android:layout_marginBottom="4dp"
-        android:background="#27B3ABAB"
+        android:background="#45F4F2F2"
         ></TextView>
 </LinearLayout>

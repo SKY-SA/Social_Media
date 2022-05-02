@@ -21,7 +21,7 @@ class ProfileRecyclerAdapter(val listPost: ArrayList<Post>) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: ProfileHolder, position: Int) {
-        holder.itemView.profile_recycler_row_user_comment.text = listPost[position].userComment
+        holder.itemView.profile_recycler_row_user_comment.text = "Your Comment: ${listPost[position].userComment}"
         Picasso.get().load(listPost[position].imageUrl).into(holder.itemView.profile_recycler_row_image)
     }
 

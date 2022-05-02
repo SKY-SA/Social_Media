@@ -31,7 +31,7 @@
             android:name=".view.SharePhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".view.FeedActivity"
+            android:name=".view.PostsActivity"
             android:exported="false" />
         <activity
             android:name=".view.UserLoginActivity"
