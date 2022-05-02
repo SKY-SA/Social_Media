@@ -85,7 +85,8 @@ class FeedActivity : AppCompatActivity() {
             startActivity(intentToProfile)
         }
         if(item.itemId == R.id.showLocation){
-            // intent To map Activity
+            val intent = Intent(this,MapsActivity :: class.java)
+            startActivity(intent)
         }
 
         return super.onOptionsItemSelected(item)
