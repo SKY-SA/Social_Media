@@ -55,9 +55,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 val geocoder = Geocoder(this@MapsActivity, Locale.getDefault())
 
                 try {
-                    val adressListener = geocoder.getFromLocation(p0.latitude,p0.longitude,1)
-                    if (adressListener.size > 0){
-                        println(adressListener.get(0).toString())
+                    val lastKnownLocation = geocoder.getFromLocation(p0.latitude,p0.longitude,1)
+                    if (lastKnownLocation.size > 0){
+                        println(lastKnownLocation.get(0).toString())
                     }
                 }catch (e: Exception){
                     e.printStackTrace()
@@ -69,12 +69,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION),1)
         }else{
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,1F,locationListener)
-            val sonBilinenKonum = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER )
+            val lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER )
 
-            if(sonBilinenKonum != null){
-                val sonBilinenLatLng = LatLng(sonBilinenKonum.latitude,sonBilinenKonum.longitude)
-                mMap.addMarker(MarkerOptions().position(sonBilinenLatLng).title("Guncel Konumumuz"))
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sonBilinenLatLng,15F))
+            if(lastKnownLocation != null){
+                val lastKnownLatLng = LatLng(lastKnownLocation.latitude,lastKnownLocation.longitude)
+                mMap.addMarker(MarkerOptions().position(lastKnownLatLng).title("Current Your Location"))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastKnownLatLng,15F))
             }
         }
     }
