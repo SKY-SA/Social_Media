@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sky.socialmedia.R
 import com.sky.socialmedia.model.Post
+import com.sky.socialmedia.utility.determineUserName
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_row.view.*
 
-class FeedRecyclerAdapter(val listPost:ArrayList<Post>) : RecyclerView.Adapter<FeedRecyclerAdapter.FeedHolder>(){
+class FeedRecyclerAdapter(private val listPost:ArrayList<Post>) : RecyclerView.Adapter<FeedRecyclerAdapter.FeedHolder>(){
     class FeedHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
     }
@@ -23,7 +24,7 @@ class FeedRecyclerAdapter(val listPost:ArrayList<Post>) : RecyclerView.Adapter<F
 
     override fun onBindViewHolder(holder: FeedHolder, position: Int) {
         holder.itemView.recycler_row_user_email.text = listPost[position].userEmail
-        holder.itemView.recycler_row_user_comment.text = listPost[position].userComment
+        holder.itemView.recycler_row_user_comment.text = "${String().determineUserName(listPost[position].userEmail)}'s Comment:  ${listPost[position].userComment}"
         Picasso.get().load(listPost[position].imageUrl).into(holder.itemView.recycler_row_image)
     }
 
@@ -31,7 +32,7 @@ class FeedRecyclerAdapter(val listPost:ArrayList<Post>) : RecyclerView.Adapter<F
       return listPost.size
     }
 
-    fun UpdateListPost(newListPost : ArrayList<Post>){
+    fun refreshData(newListPost : ArrayList<Post>){
         listPost.clear()
         listPost.addAll(newListPost)
         notifyDataSetChanged()
