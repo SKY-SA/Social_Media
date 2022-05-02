@@ -45,7 +45,7 @@ class ProfileActivity : AppCompatActivity() {
         if(date != null && !date.isNullOrEmpty()){
             profile_dateTextView.text = date
         }
-        // Samet bu yazı sanaaa ..
+
         auth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()
         val currentUser = auth.currentUser!!.email.toString()
