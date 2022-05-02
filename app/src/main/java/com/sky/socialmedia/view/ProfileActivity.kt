@@ -40,10 +40,9 @@ class ProfileActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("com.sky.socialmedia.view", Context.MODE_PRIVATE)
         sharedPreferences.let {
             date = it.getString("loginedLastDate","")
-
         }
         if(date != null && !date.isNullOrEmpty()){
-            profile_dateTextView.text = date
+            profile_dateTextView.text = "${date}"
         }
         auth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()

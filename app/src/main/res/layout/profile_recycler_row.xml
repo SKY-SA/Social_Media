@@ -11,8 +11,9 @@
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="8dp"
         android:layout_margin="4dp"
+        android:background="#48D3CBCB"
         app:srcCompat="@drawable/ic_launcher_background"
         ></ImageView>
     <TextView
@@ -21,9 +22,10 @@
         android:id="@+id/profile_recycler_row_user_comment"
         android:text="User Comment"
         android:textSize="18sp"
-        android:textColor="#D22A5BE6"
+        android:textColor="#D218378E"
         android:layout_margin="4dp"
         android:padding="9dp"
-        android:background="#27878383"
+        android:layout_marginBottom="4dp"
+        android:background="#27B3ABAB"
         ></TextView>
 </LinearLayout>

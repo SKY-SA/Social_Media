@@ -13,7 +13,7 @@ class FeedViewModel : ViewModel() {
     val posts = MutableLiveData<ArrayList<Post>>()
     private var listPost = arrayListOf<Post>()
 
-    fun getDataDatabase(database :FirebaseFirestore){
+    fun getDataFromDatabase(database :FirebaseFirestore){
         database.collection("Post")
             .orderBy("date", Query.Direction.DESCENDING)
             .addSnapshotListener { value, error ->
@@ -21,8 +21,12 @@ class FeedViewModel : ViewModel() {
                    throw error;
                 }
                 else if(value != null && !value.isEmpty){
+                   // it has deleted so we'll not see post double times on FeedActivity
+                    listPost.clear()
+
                     val documents = value.documents
                     for(document in documents){
+
                         val userEmail = document.get("userEmail") as String
                         val userComment = document.get("userComment") as String
                         val imageUrl = document.get("urlImage") as String

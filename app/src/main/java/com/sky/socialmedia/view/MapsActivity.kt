@@ -64,10 +64,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+        // Checking the permissions about map
         if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-            ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION),1)
-        }else{
+            ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            { // if we do not have permission, we get a permission
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION),1)
+            }
+        else
+        {
+            // if we have permission, get location and show it
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,1F,locationListener)
             val lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER )
 
@@ -83,13 +88,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-
+        // if there is a request for permission to get location information
         if(requestCode== 1)
         {
+            // if given data that is about the permission result is not null
             if (grantResults.size >0 ){
                 if(ContextCompat.checkSelfPermission(this ,android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                 {
+                    // this part is about the updating current location
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1,1F,locationListener)
                 }
             }

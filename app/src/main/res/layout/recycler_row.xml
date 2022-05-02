@@ -12,8 +12,10 @@
     android:text="User Email"
     android:textSize="20sp"
     android:layout_margin="5dp"
+    android:layout_marginBottom="1dp"
     android:padding="3dp"
-    android:background="#28F3AFAF"
+    android:textAlignment="center"
+    android:background="#325A5656"
     android:textColor="@color/design_default_color_primary"
     ></TextView>
 
@@ -23,7 +25,8 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="1dp"
+        android:background="#19887B7B"
         app:srcCompat="@drawable/ic_launcher_background"></ImageView>
     <TextView
         android:layout_width="match_parent"
@@ -34,7 +37,9 @@
         android:textColor="#4582B6"
         android:layout_margin="4dp"
         android:padding="6dp"
-        android:background="#23A1A0A0"
+        android:layout_marginBottom="6dp"
+        android:background="#19887B7B"
+
         ></TextView>
 
 </LinearLayout>
